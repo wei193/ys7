@@ -19,7 +19,7 @@ const (
 	CAMERALIST = "https://open.ys7.com/api/lapp/camera/list" //获取用户下的摄像头列表
 	//设备互联互通根据UUID查询抓拍的图片
 	//根据序列号获取设备的状态信息
-	//DEVICECAMERALIST = "https://open.ys7.com/api/lapp/device/camera/list"  //根据序列号获取设备的通道信息
+	DEVICECAMERALIST = "https://open.ys7.com/api/lapp/device/camera/list" //根据序列号获取设备的通道信息
 	//根据设备型号以及设备版本号查询设备是否支持萤石协议
 	//根据时间获取录像信息
 
@@ -142,6 +142,17 @@ func (ys *Ys7) GetCameraList(pageStart, pageSize int) (cameras []Camera, page Pa
 		return nil, page, err
 	}
 	return cameras, page, nil
+}
+
+//GetDeviceCameraList 获取指定设备的通道信息
+func (ys *Ys7) GetDeviceCameraList(deviceSerial string) (cameras []Camera, err error) {
+	params := make(map[string]interface{})
+	params["deviceSerial"] = deviceSerial
+	_, err = ys.authorizeRequset("POST", CAMERALIST, params, &cameras)
+	if err != nil {
+		return nil, err
+	}
+	return cameras, nil
 }
 
 //UpdateCameraName 修改通道名称
