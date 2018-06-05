@@ -109,6 +109,23 @@ func (ys *Ys7) DeleteDeviceIpc(deviceSerial, ipcSerial string, channelNo int) (e
 	return nil
 }
 
+//GetAllDeviceList 获取所有设备列表
+func (ys *Ys7) GetAllDeviceList() (devices []Device, err error) {
+	var page Page
+	devices, page, err = ys.GetDeviceList(0, 50)
+	if err != nil {
+		return
+	}
+	for pageNum := 1; pageNum < page.Total/50; pageNum++ {
+		list, _, err := ys.GetDeviceList(pageNum, 50)
+		if err != nil {
+			return nil, err
+		}
+		devices = append(devices, list...)
+	}
+	return
+}
+
 //GetDeviceList 获取设备列表
 func (ys *Ys7) GetDeviceList(pageStart, pageSize int) (devices []Device, page Page, err error) {
 	params := make(map[string]interface{})
@@ -128,6 +145,23 @@ func (ys *Ys7) InfoDevice(deviceSerial string) (deviceinfo DeviceInfo, err error
 	_, err = ys.authorizeRequset("POST", DEVICEINFO, params, &deviceinfo)
 	if err != nil {
 		return
+	}
+	return
+}
+
+//GetAllCameraList 获取所有摄像头列表
+func (ys *Ys7) GetAllCameraList() (cameras []Camera, err error) {
+	var page Page
+	cameras, page, err = ys.GetCameraList(0, 50)
+	if err != nil {
+		return
+	}
+	for pageNum := 1; pageNum < page.Total/50; pageNum++ {
+		list, _, err := ys.GetCameraList(pageNum, 50)
+		if err != nil {
+			return nil, err
+		}
+		cameras = append(cameras, list...)
 	}
 	return
 }
