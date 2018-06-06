@@ -42,6 +42,7 @@ type DeviceInfo struct {
 //Camera 萤石摄像头数据结构
 type Camera struct {
 	DeviceSerial string `json:"deviceSerial"`
+	IpcSerial    string `json:"ipcSerial"`
 	ChannelNo    int    `json:"channelNo"`
 	ChannelName  string `json:"channelName"`
 	PicURL       string `json:"picUrl"`
