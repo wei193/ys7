@@ -182,7 +182,7 @@ func (ys *Ys7) GetCameraList(pageStart, pageSize int) (cameras []Camera, page Pa
 func (ys *Ys7) GetDeviceCameraList(deviceSerial string) (cameras []Camera, err error) {
 	params := make(map[string]interface{})
 	params["deviceSerial"] = deviceSerial
-	_, err = ys.authorizeRequset("POST", CAMERALIST, params, &cameras)
+	_, err = ys.authorizeRequset("POST", DEVICECAMERALIST, params, &cameras)
 	if err != nil {
 		return nil, err
 	}
