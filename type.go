@@ -96,3 +96,26 @@ type Status struct {
 	Code string `json:"code"`
 	Msg  string `json:"msg"`
 }
+
+//Live 直播信息
+type Live struct {
+	DeviceSerial string `json:"deviceSerial"`
+	ChannelNo    int    `json:"channelNo"`
+	DeviceName   string `json:"deviceName"`
+	Hls          string `json:"hls"`
+	HlsHd        string `json:"hlsHd"`
+	Rtmp         string `json:"rtmp"`
+	RtmpHd       string `json:"rtmpHd"`
+	Status       int    `json:"status"`
+	Exception    int    `json:"exception"`
+	BeginTime    int64  `json:"beginTime"`
+	EndTime      int64  `json:"endTime"`
+}
+
+//LiveState 直播状态返回
+type LiveState struct {
+	DeviceSerial string `json:"deviceSerial"`
+	ChannelNo    int    `json:"channelNo"`
+	Ret          string `json:"ret"`
+	Desc         string `json:"desc"`
+}
