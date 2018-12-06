@@ -122,6 +122,7 @@ func (ys *Ys7) requset(method, url string, params map[string]interface{}, data i
 	status = &Status{
 		Code: res.Code,
 		Msg:  res.Msg,
+		Buf:  buf,
 	}
 	if res.Code != "200" {
 		return status, errors.New(res.Msg)

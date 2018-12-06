@@ -95,6 +95,7 @@ type respStatus struct {
 type Status struct {
 	Code string `json:"code"`
 	Msg  string `json:"msg"`
+	Buf  []byte `json:"-"`
 }
 
 //Live 直播信息
@@ -102,10 +103,12 @@ type Live struct {
 	DeviceSerial string `json:"deviceSerial"`
 	ChannelNo    int    `json:"channelNo"`
 	DeviceName   string `json:"deviceName"`
-	Hls          string `json:"hls"`
-	HlsHd        string `json:"hlsHd"`
-	Rtmp         string `json:"rtmp"`
-	RtmpHd       string `json:"rtmpHd"`
+	LiveAddress  string `json:"liveAddress,omitempty"`
+	HdAddress    string `json:"hdAddress,omitempty"`
+	Hls          string `json:"hls,omitempty"`
+	HlsHd        string `json:"hlsHd,omitempty"`
+	Rtmp         string `json:"rtmp,omitempty"`
+	RtmpHd       string `json:"rtmpHd,omitempty"`
 	Status       int    `json:"status"`
 	Exception    int    `json:"exception"`
 	BeginTime    int64  `json:"beginTime"`
