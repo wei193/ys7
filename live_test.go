@@ -27,3 +27,21 @@ func TestLiveGet(t *testing.T) {
 		tlog(live)
 	}
 }
+
+func TestLiveOpen(t *testing.T) {
+	status, err := ys.OpenLive(fmt.Sprintf("%s:%d", DeviceSerial, ChannelNo))
+	if err != nil {
+		tlog(err)
+	} else {
+		tlog(status)
+	}
+}
+
+func TestLiveClose(t *testing.T) {
+	status, err := ys.CloseLive(fmt.Sprintf("%s:%d", DeviceSerial, ChannelNo))
+	if err != nil {
+		tlog(err)
+	} else {
+		tlog(status)
+	}
+}

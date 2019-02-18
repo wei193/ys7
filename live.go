@@ -28,7 +28,9 @@ func (ys *Ys7) GetLiveLimited(deviceSerial string, channelNo, expireTime int) (l
 	params := make(map[string]interface{})
 	params["deviceSerial"] = deviceSerial
 	params["channelNo"] = channelNo
-	params["expireTime"] = expireTime
+	if expireTime != 0 {
+		params["expireTime"] = expireTime
+	}
 	_, err = ys.authorizeRequset("POST", LIVEADDRESSLIMITED, params, &live)
 	if err != nil {
 		return
