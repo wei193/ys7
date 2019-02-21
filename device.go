@@ -27,14 +27,13 @@ const (
 	//根据时间获取录像信息
 
 	//[设备]配置
-	// --全部待实现
-	//设置设备活动检测开关状态
-	//关闭设备视频加密开关
-	//打开设备视频加密开关
-	//获取wifi配置或者设备重启提示音开关状态
-	//设置wifi配置或者设备重启提示音开关状态
-	//获取镜头遮蔽开关状态
-	//设置镜头遮蔽开关
+	DEFENCESET		= "https://open.ys7.com/api/lapp/device/defence/set" //设置设备活动检测开关状态
+	OFFENCRYPT		= "https://open.ys7.com/api/lapp/device/encrypt/off" //关闭设备视频加密开关
+	ONENCRYPT		= "https://open.ys7.com/api/lapp/device/encrypt/on" //打开设备视频加密开关
+	SWITICHSTATUS	= "https://open.ys7.com/api/lapp/device/sound/switch/status" //获取wifi配置或者设备重启提示音开关状态
+	SETSOUND		= "https://open.ys7.com/api/lapp/device/sound/switch/set" //设置wifi配置或者设备重启提示音开关状态
+	SCRNESWITCHSTATUS	= "https://open.ys7.com/api/lapp/device/scene/switch/status" //获取镜头遮蔽开关状态
+	SETSCRENSWITCH	= "https://open.ys7.com/api/lapp/device/scene/switch/set" //设置镜头遮蔽开关
 	//获取声源定位开关状态
 	//设置声源定位开关
 	//获取设备布撤防（活动检测）时间计划
@@ -285,4 +284,89 @@ func (ys *Ys7) GetDeviceCap(deviceSerial string) (deviceCap *DeviceCapacity, err
 	}
 	return
 
+}
+
+// SetDefence 设备布撤防
+func (ys *Ys7) SetDefence(deviceSerial string, isDefence int) (err error) {
+	params := make(map[string]interface{})
+	params["deviceSerial"] = deviceSerial
+	params["isDefence"] = isDefence
+	_, err = ys.authorizeRequset("POST", DEFENCESET, params, nil)
+	if err != nil {
+		return
+	}
+	return nil
+}
+
+//OffEncrypt 关闭设备视频加密开关
+func (ys *Ys7) OffEncrypt(deviceSerial, validateCode string) (err error) {
+	params := make(map[string]interface{})
+	params["deviceSerial"] = deviceSerial
+	params["validateCode"] = validateCode
+	_, err = ys.authorizeRequset("POST", OFFENCRYPT, params, nil)
+	if err != nil {
+		return
+	}
+	return nil
+}
+
+//OnEncrypt 开启设备视频加密开关
+func (ys *Ys7) OnEncrypt(deviceSerial string) (err error) {
+	params := make(map[string]interface{})
+	params["deviceSerial"] = deviceSerial
+	_, err = ys.authorizeRequset("POST", ONENCRYPT, params, nil)
+	if err != nil {
+		return
+	}
+	return nil
+}
+
+//GetSoundSwitchStatus 获取wifi配置提示音开关状态
+func (ys *Ys7) GetSoundSwitchStatus(deviceSerial string) (soundStatus *SwitchStatus, err error) {
+	params := make(map[string]interface{})
+	params["deviceSerial"] = deviceSerial
+	soundStatus = &SwitchStatus{}
+	_, err = ys.authorizeRequset("POST", SWITICHSTATUS, params, &soundStatus)
+	if err != nil {
+		return
+	}
+	return
+}
+
+//SetSoundSwitch 设置wifi配置或设备启动提示音开关
+func (ys *Ys7) SetSoundSwitch(deviceSerial string, enable, channelNo int) (err error) {
+	params := make(map[string]interface{})
+	params["deviceSerial"] = deviceSerial
+	params["enable"] = enable
+	params["channelNo"] = channelNo
+	_, err = ys.authorizeRequset("POST", SETSOUND, params, nil)
+	if err != nil{
+		return
+	}
+	return
+}
+
+//GetSceneSwitchStatus 获取镜头遮蔽开关状态
+func (ys *Ys7) GetSceneSwitchStatus(deviceSerial string) (switchStatus *SwitchStatus, err error) {
+	params := make(map[string]interface{})
+	params["deviceSerial"] = deviceSerial
+	switchStatus = &SwitchStatus{}
+	_, err = ys.authorizeRequset("POST", SCRNESWITCHSTATUS, params, &switchStatus)
+	if err != nil {
+		return
+	}
+	return
+}
+
+//SetSceneSwitch 设置设备镜头遮蔽开关状态
+func (ys *Ys7) SetSceneSwitch(deviceSerial string, enable, channelNo int) (err error) {
+	params := make(map[string]interface{})
+	params["deviceSerial"] = deviceSerial
+	params["enable"] = enable
+	params["channelNo"] = channelNo
+	_, err = ys.authorizeRequset(deviceSerial, SETSCRENSWITCH, params, nil)
+	if err != nil {
+		return
+	}
+	return
 }

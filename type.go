@@ -184,3 +184,10 @@ type DeviceStatusInfo struct {
 	NvrDiskNum		int `json:"nvrDiskNum"`
 	NvrDiskState	string `json:"nvrDiskState"`
 }
+
+// SwitchStatus 开关状态
+type SwitchStatus struct {
+	DeviceSerial string `json:"deviceSerial"`
+	ChannelNo    int    `json:"channelNo"`
+	Enable		 int	`json:"enable"`
+}
