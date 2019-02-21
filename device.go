@@ -17,14 +17,43 @@ const (
 	DEVICELIST = "https://open.ys7.com/api/lapp/device/list" //获取用户下的设备列表
 	DEVICEINFO = "https://open.ys7.com/api/lapp/device/info" //获取指定设备的信息
 	CAMERALIST = "https://open.ys7.com/api/lapp/camera/list" //获取用户下的摄像头列表
-	//设备互联互通根据UUID查询抓拍的图片
-	//根据序列号获取设备的状态信息
+
+	UUIDPICTURE   = "https://open.ys7.com/api/lapp/device/uuid/picture" //设备互联互通根据UUID查询抓拍的图片
+	DEVICESTATUSINFO = "https://open.ys7.com/api/lapp/device/status/get"//根据序列号获取设备的状态信息
 	DEVICECAMERALIST = "https://open.ys7.com/api/lapp/device/camera/list" //根据序列号获取设备的通道信息
-	//根据设备型号以及设备版本号查询设备是否支持萤石协议
+	DEVICESUPPORT = "https://open.ys7.com/api/lapp/device/support/ezviz"//根据设备型号以及设备版本号查询设备是否支持萤石协议
+	DEVICECAPACITY = "https://open.ys7.com/api/lapp/device/capacity"//根据设备序列号查询设备能力集
+
 	//根据时间获取录像信息
 
 	//[设备]配置
 	// --全部待实现
+	//设置设备活动检测开关状态
+	//关闭设备视频加密开关
+	//打开设备视频加密开关
+	//获取wifi配置或者设备重启提示音开关状态
+	//设置wifi配置或者设备重启提示音开关状态
+	//获取镜头遮蔽开关状态
+	//设置镜头遮蔽开关
+	//获取声源定位开关状态
+	//设置声源定位开关
+	//获取设备布撤防（活动检测）时间计划
+	//设置布撤防（活动检测）时间计划
+	//获取摄像机指示灯开关状态
+	//设置摄像机指示灯开关
+	//获取全天录像开关状态
+	//设置全天录像开关
+	//获取智能算法配置信息
+	//设置智能算法模式
+	//设置设备告警声音模式
+	//开启或关闭设备下线通知
+	//获取设备麦克风即声音开关状态
+	//设置设备麦克风即声音开关
+	//设置设备移动跟踪开关
+	//获取设备移动跟踪开关状态
+	//设置设备预览时osd名称
+	//获取设备智能检测开关状态
+	//设置智能检测开关
 
 	//[设备]升级
 	// --全部待实现
@@ -201,4 +230,59 @@ func (ys *Ys7) UpdateCameraName(deviceSerial, name string, channelNo int) (err e
 		return
 	}
 	return nil
+}
+
+//GetPictureByUuid 设备互联互通根据UUID查询抓拍的图片
+func (ys *Ys7) GetPictureByUuid(uuid string, size int) (pic *Picture, err error) {
+	params := make(map[string]interface{})
+	params["uuid"] = uuid
+	params["size"] = size
+	pic = &Picture{}
+	_, err = ys.authorizeRequset("POST", UUIDPICTURE, params, &pic)
+	if err != nil {
+		return
+	}
+	return
+
+}
+
+//GetDeviceStatusInfo 根据序列号获取设备的状态信息
+func (ys *Ys7) GetDeviceStatusInfo(deviceSerial string, channel int) (devInfo *DeviceStatusInfo, err error) {
+	params := make(map[string]interface{})
+	params["deviceSerial"] = deviceSerial
+	params["channel"] = channel
+	devInfo = &DeviceStatusInfo{}
+	_, err = ys.authorizeRequset("POST", DEVICESTATUSINFO, params, &devInfo)
+	if err != nil {
+		return
+	}
+	return
+}
+
+//IsSupportEzviz 根据设备型号以及设备版本号查询设备是否支持萤石协议
+func (ys *Ys7) IsSupportEzviz(model, version string) (protocol *Ys7Protocol, err error) {
+	params := make(map[string]interface{})
+	params["appKey"] = ys.AppKey
+	params["model"] = model
+	params["version"] = version
+	protocol = &Ys7Protocol{}
+	_, err = ys.authorizeRequset("POST", DEVICESUPPORT, params, &protocol)
+	if err != nil {
+		return
+	}
+	return
+}
+
+//GetDeviceCap 根据设备序列号查询设备能力集
+func (ys *Ys7) GetDeviceCap(deviceSerial string) (deviceCap *DeviceCapacity, err error) {
+	params := make(map[string]interface{})
+	params["accessToken"] = ys.AccessToken
+	params["deviceSerial"] = deviceSerial
+	deviceCap = &DeviceCapacity{}
+	_, err = ys.authorizeRequset("POST", DEVICECAPACITY, params, &deviceCap)
+	if err != nil {
+		return
+	}
+	return
+
 }
