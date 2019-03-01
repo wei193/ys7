@@ -18,22 +18,22 @@ const (
 	DEVICEINFO = "https://open.ys7.com/api/lapp/device/info" //获取指定设备的信息
 	CAMERALIST = "https://open.ys7.com/api/lapp/camera/list" //获取用户下的摄像头列表
 
-	UUIDPICTURE   = "https://open.ys7.com/api/lapp/device/uuid/picture" //设备互联互通根据UUID查询抓拍的图片
-	DEVICESTATUSINFO = "https://open.ys7.com/api/lapp/device/status/get"//根据序列号获取设备的状态信息
-	DEVICECAMERALIST = "https://open.ys7.com/api/lapp/device/camera/list" //根据序列号获取设备的通道信息
-	DEVICESUPPORT = "https://open.ys7.com/api/lapp/device/support/ezviz"//根据设备型号以及设备版本号查询设备是否支持萤石协议
-	DEVICECAPACITY = "https://open.ys7.com/api/lapp/device/capacity"//根据设备序列号查询设备能力集
+	UUIDPICTURE   		= "https://open.ys7.com/api/lapp/device/uuid/picture" //设备互联互通根据UUID查询抓拍的图片
+	DEVICESTATUSINFO 	= "https://open.ys7.com/api/lapp/device/status/get"//根据序列号获取设备的状态信息
+	DEVICECAMERALIST 	= "https://open.ys7.com/api/lapp/device/camera/list" //根据序列号获取设备的通道信息
+	DEVICESUPPORT 		= "https://open.ys7.com/api/lapp/device/support/ezviz"//根据设备型号以及设备版本号查询设备是否支持萤石协议
+	DEVICECAPACITY 		= "https://open.ys7.com/api/lapp/device/capacity"//根据设备序列号查询设备能力集
 
 	//根据时间获取录像信息
 
 	//[设备]配置
-	DEFENCESET		= "https://open.ys7.com/api/lapp/device/defence/set" //设置设备活动检测开关状态
-	OFFENCRYPT		= "https://open.ys7.com/api/lapp/device/encrypt/off" //关闭设备视频加密开关
-	ONENCRYPT		= "https://open.ys7.com/api/lapp/device/encrypt/on" //打开设备视频加密开关
-	SWITICHSTATUS	= "https://open.ys7.com/api/lapp/device/sound/switch/status" //获取wifi配置或者设备重启提示音开关状态
-	SETSOUND		= "https://open.ys7.com/api/lapp/device/sound/switch/set" //设置wifi配置或者设备重启提示音开关状态
+	DEFENCESET			= "https://open.ys7.com/api/lapp/device/defence/set" //设置设备活动检测开关状态
+	OFFENCRYPT			= "https://open.ys7.com/api/lapp/device/encrypt/off" //关闭设备视频加密开关
+	ONENCRYPT			= "https://open.ys7.com/api/lapp/device/encrypt/on" //打开设备视频加密开关
+	SWITICHSTATUS		= "https://open.ys7.com/api/lapp/device/sound/switch/status" //获取wifi配置或者设备重启提示音开关状态
+	SETSOUND			= "https://open.ys7.com/api/lapp/device/sound/switch/set" //设置wifi配置或者设备重启提示音开关状态
 	SCRNESWITCHSTATUS	= "https://open.ys7.com/api/lapp/device/scene/switch/status" //获取镜头遮蔽开关状态
-	SETSCRENSWITCH	= "https://open.ys7.com/api/lapp/device/scene/switch/set" //设置镜头遮蔽开关
+	SETSCRENSWITCH		= "https://open.ys7.com/api/lapp/device/scene/switch/set" //设置镜头遮蔽开关
 	//获取声源定位开关状态
 	//设置声源定位开关
 	//获取设备布撤防（活动检测）时间计划

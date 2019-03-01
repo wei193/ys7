@@ -191,3 +191,21 @@ type SwitchStatus struct {
 	ChannelNo    int    `json:"channelNo"`
 	Enable		 int	`json:"enable"`
 }
+
+//TrafficTotal 账号下流量消耗汇总
+type TrafficTotal struct {
+	TotalFlow		int64 `json:"totalFlow"`
+	UsedFlow		int64 `json:"usedFlow"`
+	AverageConsume	int   `json:"averageConsume"`
+}
+
+//TrafficUserDetail 账户下流量消耗详情
+type TrafficUserDetail struct {
+	FlowDate		int64  `json:"flowDate"`
+	DeviceCount		int	   `json:"deviceCount"`
+	ChannelCount	int    `json:"channelCount"`
+	HlsFlow			int64  `json:"hlsFlow"`
+	AppFlow			int64  `json:"appFlow"`
+	RtmpFlow		int64  `json:"rtmpFlow"`
+	FlowCount		int64  `json:"flowCount"`
+}
