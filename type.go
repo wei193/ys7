@@ -36,37 +36,46 @@ type Device struct {
 
 //DeviceCapacity 萤石设备能力集
 type DeviceCapacity struct {
-	SupportCloud              string `json:"support_cloud"`
-	SupportIntelligentTrack   string `json:"support_intelligent_track"`
-	SupportP2pMode            string `json:"support_p_2_p_mode"`
-	SupportResolution         string `json:"support_resolution"`
-	SupportTalk               string `json:"support_talk"`
-	SupportWifiUserID         string `json:"support_wifi_user_id"`
-	SupportRemoteAuthRandcode string `json:"support_remote_auth_randcode"`
-	SupportUpgrade            string `json:"support_upgrade"`
-	SupportSmartWifi          string `json:"support_smart_wifi"`
-	SupportSsl                string `json:"support_ssl"`
-	SupportWeixin             string `json:"support_weixin"`
-	PtzCloseScene             string `json:"ptz_close_scene"`
-	SupportPresetAlarm        string `json:"support_preset_alarm"`
-	SupportRelatedDevice      string `json:"support_related_device"`
-	SupportMessage            string `json:"support_message"`
-	PtzPreset                 string `json:"ptz_preset"`
-	SupportWifi               string `json:"support_wifi"`
-	SupportCloudVersion       string `json:"support_cloud_version"`
-	PtzCenterMirror           string `json:"ptz_center_mirror"`
-	SupportDefence            string `json:"support_defence"`
-	PtzTopBottom              string `json:"ptz_top_bottom"`
-	SupportFullscreenPtz      string `json:"support_fullscreen_ptz"`
-	SupportDefenceplan        string `json:"support_defenceplan"`
-	SupportDisk               string `json:"support_disk"`
-	SupportAlarmVoice         string `json:"support_alarm_voice"`
-	PtzLeftRight              string `json:"ptz_left_right"`
-	SupportModifyPwd          string `json:"support_modify_pwd"`
-	SupportCapture            string `json:"support_capture"`
-	SupportPrivacy            string `json:"support_privacy"`
-	SupportEncrypt            string `json:"support_encrypt"`
-	SupportAutoOffline        string `json:"support_auto_offline"`
+	SupportDefence            string `json:"support_defence"`              //是否支持布撤防,活动检测开关
+	SupportTalk               string `json:"support_talk"`                 //是否支持对讲: 0-不支持, 1-全双工, 3-半双工
+	SupportDefenceplan        string `json:"support_defenceplan"`          //是否支持布撤防计划 0-不支持， 1-支持,2-支持新的设备计划协议
+	SupportDisk               string `json:"support_disk"`                 //是否支持存储格式化 0-不支持, 1-支持
+	SupportPrivacy            string `json:"support_privacy"`              //是否支持隐私保护 0-不支持, 1-支持
+	SupportMessage            string `json:"support_message"`              //是否支持留言 0-不支持, 1-支持
+	SupportAlarmVoice         string `json:"support_alarm_voice"`          //是否支持告警声音配置 0-不支持, 1-支持
+	SupportAutoOffline        string `json:"support_auto_offline"`         //是否支持设备自动上下线 0-不支持, 1-支持
+	SupprotEncrypt            string `json:"supprot_encrypt"`              //是否支持视频图像加密 0-不支持, 1-支持
+	SupportUpgrade            string `json:"support_upgrade"`              //是否支持设备升级 0-不支持, 1-支持
+	SupportCloud              string `json:"support_cloud"`                //该设备型号是否支持云存储 0-不支持, 1-支持
+	SupportCloudVersion       string `json:"support_cloud_version"`        //该设备版本是否支持云存储 0-不支持, 1-支持
+	SupportWifi               string `json:"support_wifi"`                 //是否支持WI-FI:
+	SupportCapture            string `json:"support_capture"`              //是否支持封面抓图: 0-不支持, 1-支持
+	SupportModifyPwd          string `json:"support_modify_pwd"`           //是否支持修改设备加密密码: 0-不支持, 1-支持
+	SupportResolution         string `json:"support_resolution"`           //视频播放比例 16-9表示16:9分辨率,默认16-9
+	SupportMultiScreen        string `json:"support_multi_screen"`         //是否支持多画面播放 0-不支持, 1-支持(客户端使用,与设备无关)
+	SupportUploadCloudFile    string `json:"support_upload_cloud_file"`    //是否支持手机拍照上传到云存储 `0-不支持，1-支持
+	SupportAddDelDetector     string `json:"support_add_del_detector"`     //是否支持app远程添加删除外设(探测器): 0-不支持, 1-支持
+	SupportIpcLink            string `json:"support_ipc_link"`             //是否支持IPC与A1联动关系设置: 0-不支持, 1-支持
+	SupportWeixin             string `json:"support_weixin"`               //是否支持微信互联:0-不支持, 1-支持
+	SupportSsl                string `json:"support_ssl"`                  //是否支持声源定位:0-不支持, 1-支持
+	SupportRemoteAuthRandcode string `json:"support_remote_auth_randcode"` //是否支持设备远程授权获取密码, 0-不支持, 1-支持
+	PtzTopBottom              string `json:"ptz_top_bottom"`               //是否支持云台上下转动 0-不支持, 1-支持
+	PtzLeftRight              string `json:"ptz_left_right"`               //是否支持云台左右转动 0-不支持, 1-支持
+	Ptz45                     string `json:"ptz_45"`                       //是否支持云台45度方向转动 0-不支持, 1-支持
+	PtzZoom                   string `json:"ptz_zoom"`                     //是否支持云台缩放控制 0-不支持, 1-支持
+	SupportPtz                string `json:"support_ptz"`                  //是否支持云台控制 0-不支持, 1-支持, 注:新设备的该能力集拆分为30-33这四个能力
+	PtzPreset                 string `json:"ptz_preset"`                   //是否支持云台预置点 0-不支持, 1-支持
+	PtzCommonCruise           string `json:"ptz_common_cruise"`            //是否支持普通巡航 0-不支持, 1-支持
+	PtzFigureCruise           string `json:"ptz_figure_cruise"`            //是否支持花样巡航0-不支持, 1-支持
+	PtzCenterMirror           string `json:"ptz_center_mirror"`            //是否支持中心镜像0-不支持, 1-支持
+	PtzLeftRightMirror        string `json:"ptz_left_right_mirror"`        //是否支持左右镜像 0-不支持, 1-支持
+	PtzTopBottomMirror        string `json:"ptz_top_bottom_mirror"`        //是否支持上下镜像 0-不支持, 1-支持
+	PtzCloseScene             string `json:"ptz_close_scene"`              //是否支持关闭镜头 0-不支持, 1-支持
+	SupportIntelligentTrack   string `json:"support_intelligent_track"`    //是否支持智能跟踪 0-不支持, 1-支持(C6B等云台摄像机支持)
+	SupportP2pMode            string `json:"support_p2p_mode"`             //默认0，表示老的p2p协议；配置为1，表示该版本支持新的p2p协议
+	SupportPresetAlarm        string `json:"support_preset_alarm"`         //是否支持预置点告警联动 0-不支持, 1-支持(C6B等云台摄像机支持)
+	SupportRelatedDevice      string `json:"support_related_device"`       //是否支持关联设备 0-无关联设备, 1-关联监控点或N1, 2-关联探测器或A1, 3-关联监控点探测器或R1, 4关联多通道设备
+	SupportFullscreenPtz      string `json:"support_fullscreen_ptz"`       //是否支持全景云台功能 0-不支持, 1-支持(C6B等云台摄像机支持).如存在能力集support_fullscreen_ptz_12(序号82),则优先参考能力集support_fullscreen_ptz_12
 }
 
 //DeviceInfo 萤石设备数据结构
