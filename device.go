@@ -144,7 +144,7 @@ func (ys *Ys7) GetAllDeviceList() (devices []Device, err error) {
 	if err != nil {
 		return
 	}
-	for pageNum := 1; pageNum < page.Total/50; pageNum++ {
+	for pageNum := 1; pageNum <= page.Total/50; pageNum++ {
 		list, _, err := ys.GetDeviceList(pageNum, 50)
 		if err != nil {
 			return nil, err
@@ -184,7 +184,7 @@ func (ys *Ys7) GetAllCameraList() (cameras []Camera, err error) {
 	if err != nil {
 		return
 	}
-	for pageNum := 1; pageNum < page.Total/50; pageNum++ {
+	for pageNum := 1; pageNum <= page.Total/50; pageNum++ {
 		list, _, err := ys.GetCameraList(pageNum, 50)
 		if err != nil {
 			return nil, err
