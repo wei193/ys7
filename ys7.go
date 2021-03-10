@@ -142,7 +142,7 @@ func (ys *Ys7) authorizeRequset(method, url string, params map[string]interface{
 		}
 	}()
 	params["accessToken"] = ys.AccessToken
-	status, err = ys.requset(method, url, params, data)
+	status, err = ys.requset(method, url, params, data, page...)
 	return
 }
 
